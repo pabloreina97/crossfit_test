@@ -6,6 +6,13 @@ class ReservasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Image.asset(
+          'assets/images/puro_crossfit_logo.png',
+          height: 50,
+        ),
+        centerTitle: true,
+      ),
       body: ListView(
         children: [
           ReservaTile(title: 'CrossFit', hora: '12:00 - 13:00'),
