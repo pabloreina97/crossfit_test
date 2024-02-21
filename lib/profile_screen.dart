@@ -9,6 +9,7 @@ class ProfileScreen extends StatelessWidget {
     var textThemes = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text('PERFIL'),
         centerTitle: true,
       ),
@@ -37,8 +38,7 @@ class ProfileScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
-            const Divider(),
-            const SizedBox(height: 10),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -82,10 +82,20 @@ class ProfileScreen extends StatelessWidget {
 
             /// -- MENU
             ListTile(
+              title: Text('Benchmarks'),
+              leading: Icon(Icons.fitness_center),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {
+                Navigator.of(context).pushNamed('/benchmarks');
+              },
+            ),
+            ListTile(
               title: Text('Ajustes'),
               leading: Icon(Icons.settings),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('/ajustes');
+              },
             ),
             ListTile(
               title: Text('Pagos'),

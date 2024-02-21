@@ -1,12 +1,21 @@
 import 'package:crossfit_test/app_theme.dart';
+import 'package:crossfit_test/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class ReservasScreen extends StatelessWidget {
+class ReservasScreen extends StatefulWidget {
   const ReservasScreen({super.key});
 
   @override
+  State<ReservasScreen> createState() => _ReservasScreenState();
+}
+
+class _ReservasScreenState extends State<ReservasScreen> {
+  @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size);
+    final CalendarFormat _calendarFormat = CalendarFormat.week;
+    DateTime _focusedDay = DateTime.now();
+    DateTime? _selectedDay;
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
@@ -15,29 +24,59 @@ class ReservasScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          // _Actividad(title: 'CrossFit', hora: '12:00 - 13:00'),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/card.png'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/card.png'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/card.png'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/card.png'),
-          ),
-          // _ActividadCard(title: 'CrossFit', hora: '16:30 - 17:30'),
-          // _Actividad(title: 'Open', hora: '17:30 - 18:30'),
-          // _Actividad(title: 'Hyrox', hora: '17:30 - 18:30'),
-        ],
+      // ? drawer: Container(width: double.infinity, child: Drawer(child: ProfileScreen())),
+      body: SingleChildScrollView(
+        // TODO: Hacer scrollable solo el ListView, y que permanezca el TableCalendar arriba
+        child: Column(
+          children: [
+            TableCalendar(
+              locale: 'es_ES',
+              availableCalendarFormats: const {CalendarFormat.week: 'Week'},
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              firstDay: DateTime.utc(2023, 7, 20),
+              lastDay: DateTime.utc(2025, 7, 20),
+              focusedDay: _focusedDay,
+              calendarFormat: _calendarFormat,
+              selectedDayPredicate: (day) {
+                return isSameDay(_selectedDay, day);
+              },
+              onDaySelected: (selectedDay, focusedDay) {
+                if (!isSameDay(_selectedDay, selectedDay)) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay;
+                  });
+                }
+              },
+              onPageChanged: (focusedDay) {
+                _focusedDay = focusedDay;
+              },
+            ),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                // _Actividad(title: 'CrossFit', hora: '12:00 - 13:00'),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/card.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/card.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/card.png'),
+                ),
+                // _ActividadCard(title: 'CrossFit', hora: '16:30 - 17:30'),
+                // _Actividad(title: 'Open', hora: '17:30 - 18:30'),
+                // _Actividad(title: 'Hyrox', hora: '17:30 - 18:30'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -155,22 +194,33 @@ class ReservasScreen extends StatelessWidget {
 //   }
 // }
 
-class _ActividadCard extends StatelessWidget {
-  const _ActividadCard({
+class _ClaseCard extends StatefulWidget {
+  const _ClaseCard({
     required this.title,
     required this.hora,
+    required this.inscritos,
+    required this.plazas,
   });
 
   final String title;
   final String hora;
+  final int inscritos;
+  final int plazas;
 
+  @override
+  State<_ClaseCard> createState() => _ClaseCardState();
+}
+
+class _ClaseCardState extends State<_ClaseCard> {
+  bool inscrito = true;
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
         side: BorderSide(
           color: colors.outlineVariant,
           width: 1,
@@ -190,19 +240,15 @@ class _ActividadCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title),
-                Text(hora),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(onPressed: () {}, child: Text('Detalles')),
-                    const SizedBox(width: 10),
-                    ElevatedButton(onPressed: () {}, child: Text('Reservar')),
-                  ],
-                )
+                Text(widget.title, style: textTheme.titleMedium),
+                Text(widget.hora, style: textTheme.bodyMedium),
               ],
             ),
           ),
+          if (inscrito)
+            const Icon(
+              Icons.check_circle,
+            )
         ],
       ),
     );
