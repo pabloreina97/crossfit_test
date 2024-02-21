@@ -25,14 +25,23 @@ class AppTheme {
       colorSchemeSeed: _colorThemes[selectedColor],
       brightness: Brightness.light,
       textTheme: TextTheme(
-          displayLarge: GoogleFonts.anton(),
-          displayMedium: GoogleFonts.anton(),
-          displaySmall: GoogleFonts.anton(),
-          titleLarge: GoogleFonts.anton(), // Appbar title
-          titleMedium: GoogleFonts.anton(),
-          titleSmall: GoogleFonts.anton()
-          // Define más estilos de texto según tus necesidades
-          ),
+        displayLarge: GoogleFonts.oswald(fontWeight: FontWeight.w400),
+        displayMedium: GoogleFonts.oswald(fontWeight: FontWeight.bold),
+        displaySmall: GoogleFonts.oswald(),
+        titleLarge: GoogleFonts.oswald(), // Appbar title
+        titleMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24), // Card header
+        titleSmall: GoogleFonts.oswald(),
+        headlineLarge: GoogleFonts.roboto(),
+        headlineMedium: GoogleFonts.roboto(),
+        headlineSmall: GoogleFonts.roboto(),
+        bodyLarge: GoogleFonts.roboto(),
+        bodyMedium: GoogleFonts.roboto(fontWeight: FontWeight.w300, fontSize: 14), // Card subheader
+        bodySmall: GoogleFonts.roboto(),
+        labelLarge: GoogleFonts.roboto(), // Expanded button label
+        labelMedium: GoogleFonts.roboto(),
+        labelSmall: GoogleFonts.roboto(),
+        // Define más estilos de texto según tus necesidades
+      ),
     );
   }
 }
@@ -41,7 +50,7 @@ class TextStyles {
   static const TextStyle displayLarge = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    fontFamily: 'Anton', // Cambia 'Roboto' por la fuente que desees
+    fontFamily: 'oswald', // Cambia 'Roboto' por la fuente que desees
   );
 
   static const TextStyle displayMedium = TextStyle(

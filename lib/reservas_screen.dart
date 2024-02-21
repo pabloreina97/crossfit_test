@@ -62,14 +62,32 @@ class _ReservasScreenState extends State<ReservasScreen> {
                     hora: '12:00 - 13:00',
                     inscritos: 5,
                     plazas: 12),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/card.png'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/card.png'),
-                ),
+                _ClaseCard(
+                    title: 'CROSSFIT',
+                    hora: '12:00 - 13:00',
+                    inscritos: 5,
+                    plazas: 12),
+                _ClaseCard(
+                    title: 'CROSSFIT',
+                    hora: '12:00 - 13:00',
+                    inscritos: 5,
+                    plazas: 12),
+                _ClaseCard(
+                    title: 'CROSSFIT',
+                    hora: '12:00 - 13:00',
+                    inscritos: 5,
+                    plazas: 12),
+                _ClaseCard(
+                    title: 'CROSSFIT',
+                    hora: '12:00 - 13:00',
+                    inscritos: 5,
+                    plazas: 12),
+                _ClaseCard(
+                    title: 'CROSSFIT',
+                    hora: '12:00 - 13:00',
+                    inscritos: 5,
+                    plazas: 12),
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset('assets/card.png'),
@@ -221,12 +239,13 @@ class _ClaseCardState extends State<_ClaseCard> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    return InkWell(
-      onTap: () => Navigator.of(context).pushNamed('/clase_detail'),
+    const double cardRadius = 12;
+    return Container(
+      height: 80,
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(cardRadius),
           side: BorderSide(
             color: colors.outlineVariant,
             width: 1,
@@ -234,138 +253,45 @@ class _ClaseCardState extends State<_ClaseCard> {
         ),
         child: Row(
           children: [
-            // Container(
-            //   width: 40,
-            //   child: Ink.image(
-            //     image: NetworkImage('https://static.tuasaude.com/media/article/ne/lq/crossfit_37303_l.jpg'),
-            //     fit: BoxFit.none,
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.title, style: textTheme.titleMedium),
-                  Text(widget.hora, style: textTheme.bodyMedium),
-                ],
+            ClipRRect(
+              borderRadius:
+                  BorderRadius.horizontal(left: Radius.circular(cardRadius)),
+              child: Image.asset(
+                'assets/cf.webp',
+                height: double.infinity,
+                width: 80,
+                fit: BoxFit.cover,
               ),
             ),
-            if (inscrito)
-              const Icon(
-                Icons.check_circle,
-              )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Actividad extends StatelessWidget {
-  const _Actividad({
-    required this.title,
-    required this.hora,
-  });
-
-  final String title;
-  final String hora;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            color: Colors.black12,
-            width: 0.5,
-          ),
-        ),
-        padding: const EdgeInsets.all(12),
-        child: Stack(
-          children: [
-            const Positioned(
-              right: 5,
-              top: 5,
-              child: Completo(),
-            ),
-            Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: [
-                    const SizedBox(
-                      width: 60,
-                      child: Center(
-                        child: Icon(
-                          Icons.sports_handball,
-                          color: Colors.amber,
-                          size: 50,
-                        ),
-                      ),
+                    // Container(
+                    //   width: 40,
+                    //   child: Ink.image(
+                    //     image: NetworkImage('https://static.tuasaude.com/media/article/ne/lq/crossfit_37303_l.jpg'),
+                    //     fit: BoxFit.none,
+                    //   ),
+                    // ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.title, style: textTheme.titleMedium),
+                        Text(widget.hora, style: textTheme.bodyMedium),
+                      ],
                     ),
-                    const SizedBox(width: 5),
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 40,
-                      ),
-                    ),
+                    Spacer(),
+                    if (inscrito)
+                      const Icon(
+                        Icons.check_circle,
+                      )
+                    else
+                      Completo(),
                   ],
                 ),
-                Row(
-                  children: [
-                    const SizedBox(width: 65),
-                    Text(
-                      hora,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  children: [
-                    const Expanded(child: SizedBox()),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFAF0D4),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      child: const Text(
-                        'Detalles',
-                        style: TextStyle(
-                          fontSize: 22,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFFFC107),
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      child: const Text(
-                        'Reservar',
-                        style: TextStyle(
-                          fontSize: 22,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           ],
         ),
