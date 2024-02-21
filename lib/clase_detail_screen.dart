@@ -61,10 +61,6 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
                 ),
                 centerTitle: true,
                 backgroundColor: Colors.white,
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {},
-                ),
                 scrolledUnderElevation: 0,
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
