@@ -5,97 +5,106 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = Theme.of(context).brightness;
     var colors = Theme.of(context).colorScheme;
     var textThemes = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text('PERFIL'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(true ? Icons.light_mode : Icons.dark_mode))],
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              /// -- IMAGE
-              Stack(
+        child: Column(
+          children: [
+            /// -- IMAGE
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: const Image(
+                      fit: BoxFit.cover,
+                      image: NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
+            ),
+            const SizedBox(height: 10),
+            Text('Pablo Reina', style: textThemes.displaySmall),
+            Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
+            const SizedBox(height: 20),
+
+            /// -- BUTTON
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
+              child: const Text('Editar perfil'),
+            ),
+
+            const SizedBox(height: 30),
+            const Divider(),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: const Image(
-                            image:
-                                NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: colors.primary),
-                      child: const Icon(
-                        Icons.edit,
-                        color: Colors.black,
-                        size: 20,
+                  Text('Historial de entrenamiento', style: textThemes.titleMedium),
+                  const SizedBox(height: 10),
+                  ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      ListTile(
+                        title: Text('Ayer, 17:00'),
+                        subtitle: Text('CrossFit'),
+                        leading: Icon(Icons.sports_gymnastics),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {},
                       ),
-                    ),
+                      ListTile(
+                        title: Text('Ayer, 17:00'),
+                        subtitle: Text('CrossFit'),
+                        leading: Icon(Icons.sports_gymnastics),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        title: Text('Ayer, 17:00'),
+                        subtitle: Text('CrossFit'),
+                        leading: Icon(Icons.sports_gymnastics),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              Text('Pablo Reina', style: textThemes.displaySmall),
-              Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
-              const SizedBox(height: 20),
+            ),
+            const SizedBox(height: 30),
+            const Divider(),
+            const SizedBox(height: 10),
 
-              /// -- BUTTON
-              SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
-                  child: const Text('Editar perfil'),
-                ),
-              ),
+            /// -- MENU
+            ListTile(
+              title: Text('Ajustes'),
+              leading: Icon(Icons.settings),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('Pagos'),
+              leading: Icon(Icons.monetization_on),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('Información'),
+              leading: Icon(Icons.info),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
 
-              const SizedBox(height: 30),
-              const Divider(),
-              const SizedBox(height: 10),
-
-              /// -- MENU
-              ProfileMenuWidget(title: "Ajustes", icon: Icons.settings, onPress: () {}),
-              ProfileMenuWidget(title: "Facturación", icon: Icons.wallet, onPress: () {}),
-              ProfileMenuWidget(title: "Gestión usuario", icon: Icons.verified, onPress: () {}),
-              const Divider(),
-              const SizedBox(height: 10),
-              ProfileMenuWidget(title: "Información", icon: Icons.info, onPress: () {}),
-              ProfileMenuWidget(
-                  title: "Cerrar sesión",
-                  icon: Icons.logout,
-                  textColor: colors.error,
-                  endIcon: false,
-                  onPress: () {
-                    // Get.defaultDialog(
-                    //   title: "LOGOUT",
-                    //   titleStyle: const TextStyle(fontSize: 20),
-                    //   content: const Padding(
-                    //     padding: EdgeInsets.symmetric(vertical: 15.0),
-                    //     child: Text("Are you sure, you want to Logout?"),
-                    //   ),
-                    //   confirm: Expanded(
-                    //     child: ElevatedButton(
-                    //       onPressed: () {},
-                    //       style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, side: BorderSide.none),
-                    //       child: const Text("Yes"),
-                    //     ),
-                    //   ),
-                    //   cancel: OutlinedButton(onPressed: () {}, child: const Text("No")),
-                    // );
-                  }),
-            ],
-          ),
+            const Divider(),
+            const SizedBox(height: 10),
+            ProfileMenuWidget(
+                title: "Cerrar sesión", icon: Icons.logout, textColor: colors.error, endIcon: false, onPress: () {}),
+          ],
         ),
       ),
     );
@@ -136,16 +145,7 @@ class ProfileMenuWidget extends StatelessWidget {
         child: Icon(icon, color: iconColor),
       ),
       title: Text(title, style: Theme.of(context).textTheme.bodyLarge?.apply(color: textColor)),
-      trailing: endIcon
-          ? Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.grey.withOpacity(0.1),
-              ),
-              child: const Icon(Icons.keyboard_arrow_right, size: 18.0, color: Colors.grey))
-          : null,
+      trailing: endIcon ? const Icon(Icons.keyboard_arrow_right, size: 18.0, color: Colors.grey) : null,
     );
   }
 }
@@ -175,6 +175,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: const Image(
+                            fit: BoxFit.cover,
                             image:
                                 NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
                   ),
@@ -185,7 +186,7 @@ class UpdateProfileScreen extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: colors.primary),
-                      child: const Icon(Icons.camera, color: Colors.black, size: 20),
+                      child: const Icon(Icons.edit, color: Colors.black, size: 20),
                     ),
                   ),
                 ],
