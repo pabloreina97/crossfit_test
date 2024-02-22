@@ -21,11 +21,8 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
   }
 
   bool get isShrink {
-    debugPrint((_scrollController.hasClients &&
-            _scrollController.offset > (200 - kToolbarHeight))
-        .toString());
-    return _scrollController.hasClients &&
-        _scrollController.offset > (200 - kToolbarHeight);
+    debugPrint((_scrollController.hasClients && _scrollController.offset > (200 - kToolbarHeight)).toString());
+    return _scrollController.hasClients && _scrollController.offset > (200 - kToolbarHeight);
   }
 
   @override
@@ -52,20 +49,14 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
                 pinned: true,
                 expandedHeight: 180,
                 foregroundColor: isShrink ? Colors.black : Colors.white,
-                title: const Text(
-                  'CrossFit',
-                  style: TextStyle(
-                    fontSize: 30, // Tamaño del texto expandido
-                    color: Colors.black, // Color del texto expandido
-                  ),
-                ),
+                title: const Text('CROSSFIT'),
                 centerTitle: true,
                 backgroundColor: Colors.white,
                 scrolledUnderElevation: 0,
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
-                    'assets/crossfit-tiene-muchos-beneficios-convertido-deporte-moda_98.webp',
+                    'assets/cf.webp',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -91,19 +82,19 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     padding: const EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     minimumSize: const Size(double.infinity, 0),
                   ),
-                  child: const Text(
-                    'Reservar',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+                  child: Text(
+                    'RESERVAR',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: Theme.of(context).colorScheme.onSecondary),
                   ),
                 ),
               ),
@@ -123,6 +114,8 @@ class Bloque extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -137,10 +130,7 @@ class Bloque extends StatelessWidget {
           children: [
             Text(
               "$letra: $title".toUpperCase(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: textTheme.titleMedium,
             ),
             const SizedBox(height: 10),
             const Ejercicio(
@@ -202,8 +192,10 @@ class Ejercicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -222,15 +214,10 @@ class Ejercicio extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: const TextStyle(fontSize: 20),
-                ),
+                Text(title, overflow: TextOverflow.ellipsis, maxLines: 2, style: textTheme.bodyLarge),
                 Text(
                   valor,
-                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  style: textTheme.labelMedium,
                 ),
               ],
             ),

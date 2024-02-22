@@ -25,20 +25,20 @@ class AppTheme {
       colorSchemeSeed: _colorThemes[selectedColor],
       brightness: Brightness.light,
       textTheme: TextTheme(
-        displayLarge: GoogleFonts.oswald(fontWeight: FontWeight.w400),
-        displayMedium: GoogleFonts.oswald(fontWeight: FontWeight.bold),
-        displaySmall: GoogleFonts.oswald(),
-        titleLarge: GoogleFonts.oswald(), // Appbar title
-        titleMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24), // Card header
-        titleSmall: GoogleFonts.oswald(),
+        displayLarge: GoogleFonts.oswald(fontWeight: FontWeight.w500),
+        displayMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500),
+        displaySmall: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24),
+        titleLarge: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24), // Appbar title
+        titleMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500), // Card header
+        titleSmall: GoogleFonts.oswald(fontWeight: FontWeight.w500),
         headlineLarge: GoogleFonts.roboto(),
         headlineMedium: GoogleFonts.roboto(),
         headlineSmall: GoogleFonts.roboto(),
         bodyLarge: GoogleFonts.roboto(),
-        bodyMedium: GoogleFonts.roboto(fontWeight: FontWeight.w300, fontSize: 14), // Card subheader
+        bodyMedium: GoogleFonts.roboto(), // Card subheader
         bodySmall: GoogleFonts.roboto(),
         labelLarge: GoogleFonts.roboto(), // Expanded button label
-        labelMedium: GoogleFonts.roboto(),
+        labelMedium: GoogleFonts.roboto(fontWeight: FontWeight.w300, fontSize: 14),
         labelSmall: GoogleFonts.roboto(),
         // Define más estilos de texto según tus necesidades
       ),

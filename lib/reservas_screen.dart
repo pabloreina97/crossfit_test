@@ -57,36 +57,12 @@ class _ReservasScreenState extends State<ReservasScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 // _Actividad(title: 'CrossFit', hora: '12:00 - 13:00'),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
-                _ClaseCard(
-                    title: 'CROSSFIT',
-                    hora: '12:00 - 13:00',
-                    inscritos: 5,
-                    plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -240,60 +216,64 @@ class _ClaseCardState extends State<_ClaseCard> {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     const double cardRadius = 12;
-    return Container(
-      height: 80,
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(cardRadius),
-          side: BorderSide(
-            color: colors.outlineVariant,
-            width: 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius:
-                  BorderRadius.horizontal(left: Radius.circular(cardRadius)),
-              child: Image.asset(
-                'assets/cf.webp',
-                height: double.infinity,
-                width: 80,
-                fit: BoxFit.cover,
-              ),
+    return GestureDetector(
+      onTap: () => Navigator.of(context).pushNamed('/clase_detail'),
+      child: SizedBox(
+        height: 80,
+        child: Card(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(cardRadius),
+            side: BorderSide(
+              color: colors.outlineVariant,
+              width: 1,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    // Container(
-                    //   width: 40,
-                    //   child: Ink.image(
-                    //     image: NetworkImage('https://static.tuasaude.com/media/article/ne/lq/crossfit_37303_l.jpg'),
-                    //     fit: BoxFit.none,
-                    //   ),
-                    // ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.title, style: textTheme.titleMedium),
-                        Text(widget.hora, style: textTheme.bodyMedium),
-                      ],
-                    ),
-                    Spacer(),
-                    if (inscrito)
-                      const Icon(
-                        Icons.check_circle,
-                      )
-                    else
-                      Completo(),
-                  ],
+          ),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(cardRadius)),
+                child: Image.asset(
+                  'assets/cf.webp',
+                  height: double.infinity,
+                  width: 80,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Container(
+                      //   width: 40,
+                      //   child: Ink.image(
+                      //     image: NetworkImage('https://static.tuasaude.com/media/article/ne/lq/crossfit_37303_l.jpg'),
+                      //     fit: BoxFit.none,
+                      //   ),
+                      // ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.title, style: textTheme.displaySmall),
+                          Text(widget.hora, style: textTheme.labelMedium),
+                        ],
+                      ),
+                      Spacer(),
+                      if (inscrito)
+                        const Icon(
+                          Icons.check_circle,
+                        )
+                      else
+                        Completo(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
