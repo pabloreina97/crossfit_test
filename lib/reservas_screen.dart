@@ -48,13 +48,42 @@ class _ReservasScreenState extends State<ReservasScreen> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                // _Actividad(title: 'CrossFit', hora: '12:00 - 13:00'),
+                // MAÑANA
+                _ClaseCard(title: 'CROSSFIT', hora: '7:00 - 8:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN BOX', hora: '7:00 - 8:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '7:00 - 8:00', inscritos: 0, plazas: 4),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '7:00 - 8:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'CROSSFIT', hora: '8:00 - 9:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '8:00 - 9:00', inscritos: 2, plazas: 4),
+                _ClaseCard(title: 'OPEN BOX', hora: '8:30 - 10:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'HYROX', hora: '9:00 - 10:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '9:00 - 10:00', inscritos: 1, plazas: 4),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '9:00 - 10:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'CROSSFIT', hora: '10:00 - 11:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN BOX', hora: '10:00 - 11:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '10:00 - 11:00', inscritos: 3, plazas: 4),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '11:00 - 12:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN BOX', hora: '11:30 - 13:00', inscritos: 5, plazas: 6),
                 _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
-                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
-                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
-                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
-                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
-                _ClaseCard(title: 'CROSSFIT', hora: '12:00 - 13:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '12:00 - 13:00', inscritos: 1, plazas: 4),
+                _ClaseCard(title: 'OPEN BOX', hora: '13:00 - 14:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'HYROX', hora: '13:00 - 14:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '13:00 - 14:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '13:00 - 14:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'INICIACIÓN', hora: '14:00 - 15:00', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '14:00 - 15:00', inscritos: 2, plazas: 4),
+                // TARDE
+                _ClaseCard(title: 'OPEN BOX', hora: '17:30 - 19:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'HYROX', hora: '17:30 - 18:30', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '17:30 - 18:30', inscritos: 0, plazas: 4),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '17:30 - 18:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '18:00 - 19:00', inscritos: 3, plazas: 4),
+                _ClaseCard(title: 'OPEN BOX', hora: '18:30 - 20:00', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN COLECTIVAS', hora: '19:00 - 20:00', inscritos: 2, plazas: 4),
+                _ClaseCard(title: 'CROSSFIT', hora: '19:30 - 20:30', inscritos: 5, plazas: 12),
+                _ClaseCard(title: 'TRAINING CULTURE', hora: '19:30 - 20:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'OPEN BOX', hora: '20:00 - 21:30', inscritos: 5, plazas: 6),
+                _ClaseCard(title: 'CROSSFIT', hora: '20:30 - 21:30', inscritos: 5, plazas: 12),
               ],
             ),
           ],
@@ -108,7 +137,7 @@ class _ClaseCardState extends State<_ClaseCard> {
               ClipRRect(
                 borderRadius: BorderRadius.horizontal(left: Radius.circular(cardRadius)),
                 child: Image.asset(
-                  'assets/cf.webp',
+                  'assets/images/${widget.title}.jpg',
                   height: double.infinity,
                   width: 80,
                   fit: BoxFit.cover,
@@ -144,7 +173,10 @@ class _ClaseCardState extends State<_ClaseCard> {
                           color: colors.primary,
                         )
                       else
-                        Completo(),
+                        Completo(
+                          inscritos: widget.inscritos,
+                          plazas: widget.plazas,
+                        ),
                     ],
                   ),
                 ),
@@ -158,92 +190,60 @@ class _ClaseCardState extends State<_ClaseCard> {
 }
 
 class Completo extends StatelessWidget {
-  const Completo({super.key});
+  final int inscritos;
+  final int plazas;
+
+  const Completo({
+    super.key,
+    required this.inscritos,
+    required this.plazas,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Container(
-        height: 20,
-        width: 2,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondary),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondary),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondary),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondary),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondary),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondaryContainer),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondaryContainer),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondaryContainer),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-      Container(
-        height: 20,
-        width: 2,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100), color: Theme.of(context).colorScheme.secondaryContainer),
-      ),
-      SizedBox(
-        width: 2,
-      ),
-    ]);
+    return Row(children: _createChildren(context));
+  }
+
+  List<Widget> _createChildren(BuildContext context) {
+    // Lista para almacenar los Widgets
+    List<Widget> children = [];
+
+    // Añadir elementos del primer tipo
+    for (int i = 0; i < inscritos; i++) {
+      children.add(
+        Container(
+          height: 20,
+          width: 2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+      );
+      // Añadir un SizedBox después de cada elemento del primer tipo, excepto después del último
+      if (i < inscritos - 1 || plazas > inscritos) {
+        children.add(SizedBox(width: 2));
+      }
+    }
+
+    // Añadir elementos del segundo tipo (si hay plazas disponibles)
+    for (int i = 0; i < (plazas - inscritos); i++) {
+      children.add(
+        Container(
+          height: 20,
+          width: 2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Theme.of(context).colorScheme.secondaryContainer,
+          ),
+        ),
+      );
+      // Añadir un SizedBox después de cada elemento del segundo tipo, excepto después del último
+      if (i < (plazas - inscritos - 1)) {
+        children.add(SizedBox(width: 2));
+      }
+    }
+
+    return children;
   }
 }

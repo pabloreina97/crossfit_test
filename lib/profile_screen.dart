@@ -82,14 +82,6 @@ class ProfileScreen extends StatelessWidget {
 
             /// -- MENU
             ListTile(
-              title: Text('Benchmarks'),
-              leading: Icon(Icons.fitness_center),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).pushNamed('/benchmarks');
-              },
-            ),
-            ListTile(
               title: Text('Ajustes'),
               leading: Icon(Icons.settings),
               trailing: Icon(Icons.keyboard_arrow_right),
