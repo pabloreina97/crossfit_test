@@ -49,7 +49,7 @@ class Proveedor extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
-                  'assets/cf.webp',
+                  'assets/images/CROSSFIT.jpg',
                   height: 120,
                   width: double.infinity,
                   fit: BoxFit.cover,

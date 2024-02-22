@@ -21,7 +21,8 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
 
   void _updateExpansionPercentage() {
     setState(() {
-      _expansionPercentage = 1.0 - (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
+      _expansionPercentage = 1.0 -
+          (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
 
       _changeAppBarTitleColor(_expansionPercentage);
     });
@@ -38,6 +39,7 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map args = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       body: CustomScrollView(
         controller: _scrollController,
@@ -46,15 +48,18 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
             pinned: true,
             expandedHeight: 180,
             foregroundColor: appBarTitleColor,
-            title: const Text('CROSSFIT'),
+            title: Text(args['title'] as String),
             centerTitle: true,
             backgroundColor: Colors.white,
             scrolledUnderElevation: 0,
             elevation: 0,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/cf.webp',
-                fit: BoxFit.cover,
+              background: Hero(
+                tag: args['id'],
+                child: Image.asset(
+                  'assets/images/${args['title']}.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -86,7 +91,10 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
           ),
           child: Text(
             'RESERVAR',
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onSecondary),
           ),
         ),
       ),
@@ -109,7 +117,7 @@ class Bloque extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(10),
         ),
         padding: const EdgeInsets.all(20),
@@ -202,7 +210,10 @@ class Ejercicio extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, overflow: TextOverflow.ellipsis, maxLines: 2, style: textTheme.bodyLarge),
+                Text(title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: textTheme.bodyLarge),
                 Text(
                   valor,
                   style: textTheme.labelMedium,
