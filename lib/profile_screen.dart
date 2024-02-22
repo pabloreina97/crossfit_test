@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Historial de entrenamiento', style: textThemes.titleMedium),
+                  Text('Historial de entrenamiento', style: textThemes.headlineSmall),
                   const SizedBox(height: 10),
                   ListView(
                     shrinkWrap: true,

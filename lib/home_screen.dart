@@ -1,6 +1,7 @@
 import 'package:crossfit_test/benchmarks_screen.dart';
 import 'package:crossfit_test/profile_screen.dart';
 import 'package:crossfit_test/reservas_screen.dart';
+import 'package:crossfit_test/tienda_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,10 +13,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
-  List<Widget> screens = <Widget>[const ReservasScreen(), const BenchmarksScreen(), const ProfileScreen()];
+  List<Widget> screens = <Widget>[const ReservasScreen(), const BenchmarksScreen(), const TiendaScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // TODO: Cambiar icono drawer
+        // leading: IconButton(
+        //   icon: Icon(Icons.account_circle),
+        //   onPressed: () => Scaffold.of(context).openDrawer(),
+        // ),
+        title: Image.asset(
+          'assets/images/puro_crossfit_logo.png',
+          height: 50,
+        ),
+        centerTitle: true,
+      ),
+      drawer: Container(width: double.infinity, child: Drawer(child: ProfileScreen())),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -37,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
           NavigationDestination(
             icon: Badge(
               label: Text('2'),
-              child: Icon(Icons.verified_user),
+              child: Icon(Icons.shopping_bag),
             ),
-            label: 'Perfil',
+            label: 'Tienda',
           ),
         ],
       ),

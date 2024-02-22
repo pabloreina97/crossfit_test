@@ -64,10 +64,10 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
               SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    const Bloque(letra: 'A', title: 'Emom17\''),
-                    const Bloque(letra: 'B', title: 'Amrap12\''),
+                    const Bloque(letra: 'A', title: 'Emom 17\''),
+                    const Bloque(letra: 'B', title: 'Amrap 12\''),
                     const Bloque(letra: 'C', title: 'For Time'),
-                    const Bloque(letra: 'D', title: 'Amrap12\''),
+                    const Bloque(letra: 'D', title: 'Amrap 12\''),
                     const SizedBox(height: 70),
                   ],
                 ),
@@ -130,7 +130,7 @@ class Bloque extends StatelessWidget {
           children: [
             Text(
               "$letra: $title".toUpperCase(),
-              style: textTheme.titleMedium,
+              style: textTheme.headlineSmall,
             ),
             const SizedBox(height: 10),
             const Ejercicio(
