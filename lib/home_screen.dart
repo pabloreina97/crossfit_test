@@ -1,7 +1,7 @@
 import 'package:crossfit_test/benchmarks_screen.dart';
 import 'package:crossfit_test/profile_screen.dart';
+import 'package:crossfit_test/proveedores_screen.dart';
 import 'package:crossfit_test/reservas_screen.dart';
-import 'package:crossfit_test/tienda_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +13,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
-  List<Widget> screens = <Widget>[const ReservasScreen(), const BenchmarksScreen(), const TiendaScreen()];
+  List<Widget> screens = <Widget>[
+    const ReservasScreen(),
+    const BenchmarksScreen(),
+    const ProveedoresScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
       ),
-      drawer: Container(width: double.infinity, child: Drawer(child: ProfileScreen())),
+      drawer: Container(
+          width: double.infinity, child: Drawer(child: ProfileScreen())),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

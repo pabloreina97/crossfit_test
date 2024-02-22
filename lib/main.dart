@@ -1,4 +1,6 @@
 import 'package:crossfit_test/ajustes_screen.dart';
+import 'package:crossfit_test/categoria_tienda_screen.dart';
+import 'package:crossfit_test/proveedor_screen.dart';
 import 'package:crossfit_test/theme/app_theme.dart';
 import 'package:crossfit_test/benchmarks_screen.dart';
 import 'package:crossfit_test/clase_detail_screen.dart';
@@ -29,6 +31,8 @@ class MainApp extends StatelessWidget {
           '/reservas': (context) => ReservasScreen(),
           '/profile': (context) => ProfileScreen(),
           '/ajustes': (context) => AjustesScreen(),
+          '/categoria_tienda': (context) => CategoriaTiendaScreen(),
+          '/proveedor': (context) => ProveedorScreen(),
         });
   }
 }
