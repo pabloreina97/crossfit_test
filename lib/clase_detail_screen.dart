@@ -9,98 +9,86 @@ class ClaseDetailScreen extends StatefulWidget {
 }
 
 class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
-  late ScrollController _scrollController;
-  bool lastStatus = true;
-
-  _scrollListener() {
-    if (isShrink != lastStatus) {
-      setState(() {
-        lastStatus = isShrink;
-      });
-    }
-  }
-
-  bool get isShrink {
-    debugPrint((_scrollController.hasClients && _scrollController.offset > (200 - kToolbarHeight)).toString());
-    return _scrollController.hasClients && _scrollController.offset > (200 - kToolbarHeight);
-  }
+  double _expansionPercentage = 1.0;
+  final ScrollController _scrollController = ScrollController();
+  Color appBarTitleColor = Colors.white;
 
   @override
   void initState() {
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
     super.initState();
+    _scrollController.addListener(_updateExpansionPercentage);
   }
 
-  @override
-  void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    super.dispose();
+  void _updateExpansionPercentage() {
+    setState(() {
+      _expansionPercentage = 1.0 - (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
+
+      _changeAppBarTitleColor(_expansionPercentage);
+    });
+  }
+
+  void _changeAppBarTitleColor(expansionPercentage) {
+    Color color1 = Colors.black;
+    Color color2 = Colors.white;
+
+    setState(() {
+      appBarTitleColor = Color.lerp(color1, color2, expansionPercentage)!;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                pinned: true,
-                expandedHeight: 180,
-                foregroundColor: isShrink ? Colors.black : Colors.white,
-                title: const Text('CROSSFIT'),
-                centerTitle: true,
-                backgroundColor: Colors.white,
-                scrolledUnderElevation: 0,
-                elevation: 0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Image.asset(
-                    'assets/cf.webp',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 180,
+            foregroundColor: appBarTitleColor,
+            title: const Text('CROSSFIT'),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            scrolledUnderElevation: 0,
+            elevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset(
+                'assets/cf.webp',
+                fit: BoxFit.cover,
               ),
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    const Bloque(letra: 'A', title: 'Emom 17\''),
-                    const Bloque(letra: 'B', title: 'Amrap 12\''),
-                    const Bloque(letra: 'C', title: 'For Time'),
-                    const Bloque(letra: 'D', title: 'Amrap 12\''),
-                    const SizedBox(height: 70),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-          Column(
-            children: [
-              const Expanded(child: SizedBox()),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    padding: const EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    minimumSize: const Size(double.infinity, 0),
-                  ),
-                  child: Text(
-                    'RESERVAR',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge!
-                        .copyWith(color: Theme.of(context).colorScheme.onSecondary),
-                  ),
-                ),
-              ),
-            ],
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const Bloque(letra: 'A', title: 'Emom17\''),
+                const Bloque(letra: 'B', title: 'Amrap12\''),
+                const Bloque(letra: 'C', title: 'For Time'),
+                const Bloque(letra: 'D', title: 'Amrap12\''),
+                const SizedBox(height: 70),
+              ],
+            ),
           ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            padding: const EdgeInsets.all(10),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            minimumSize: const Size(double.infinity, 0),
+          ),
+          child: Text(
+            'RESERVAR',
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
+          ),
+        ),
       ),
     );
   }
