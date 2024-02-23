@@ -65,6 +65,47 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Text(
+                    'INSCRITOS',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                        AvatarScrollItem(),
+                      ],
+                    ),
+                    scrollDirection: Axis.horizontal,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Divider(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Text(
+                    'WOD',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
                 const Bloque(letra: 'A', title: 'Back squat', children: [
                   const Ejercicio(
                     title: 'Back squat',
@@ -112,7 +153,7 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
@@ -128,6 +169,23 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
             style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AvatarScrollItem extends StatelessWidget {
+  const AvatarScrollItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: CircleAvatar(
+        foregroundImage: NetworkImage(
+            'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='),
       ),
     );
   }

@@ -13,8 +13,8 @@ class AppTheme {
         displayMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500),
         displaySmall: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24),
         headlineLarge: GoogleFonts.oswald(fontWeight: FontWeight.w500),
-        headlineMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500),
-        headlineSmall: GoogleFonts.oswald(fontWeight: FontWeight.w500),
+        headlineMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24),
+        headlineSmall: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 18),
         titleLarge: GoogleFonts.oswald(fontWeight: FontWeight.w500, fontSize: 24), // Appbar title
         titleMedium: GoogleFonts.oswald(fontWeight: FontWeight.w500), // Card header
         titleSmall: GoogleFonts.oswald(fontWeight: FontWeight.w500),
