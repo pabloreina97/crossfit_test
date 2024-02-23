@@ -14,99 +14,116 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            /// -- IMAGE
-            SizedBox(
-              width: 120,
-              height: 120,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: const Image(
-                      fit: BoxFit.cover,
-                      image: NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
-            ),
-            const SizedBox(height: 10),
-            Text('Pablo Reina', style: textThemes.displaySmall),
-            Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
-            const SizedBox(height: 20),
-
-            /// -- BUTTON
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
-              child: const Text('Editar perfil'),
-            ),
-
-            const SizedBox(height: 30),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Historial de entrenamiento', style: textThemes.headlineSmall),
-                  const SizedBox(height: 10),
-                  ListView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      ListTile(
-                        title: Text('Ayer, 17:00'),
-                        subtitle: Text('CrossFit'),
-                        leading: Icon(Icons.sports_gymnastics),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        title: Text('Ayer, 17:00'),
-                        subtitle: Text('CrossFit'),
-                        leading: Icon(Icons.sports_gymnastics),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        title: Text('Ayer, 17:00'),
-                        subtitle: Text('CrossFit'),
-                        leading: Icon(Icons.sports_gymnastics),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              /// -- IMAGE
+              SizedBox(
+                width: 120,
+                height: 120,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: const Image(
+                        fit: BoxFit.cover,
+                        image: NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
               ),
-            ),
-            const SizedBox(height: 30),
-            const Divider(),
-            const SizedBox(height: 10),
+              const SizedBox(height: 10),
+              Text('Pablo Reina', style: textThemes.displaySmall),
+              Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
+              const SizedBox(height: 20),
 
-            /// -- MENU
-            ListTile(
-              title: Text('Ajustes'),
-              leading: Icon(Icons.settings),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).pushNamed('/ajustes');
-              },
-            ),
-            ListTile(
-              title: Text('Pagos'),
-              leading: Icon(Icons.monetization_on),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('Información'),
-              leading: Icon(Icons.info),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {},
-            ),
+              /// -- BUTTON
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                  padding: const EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  minimumSize: const Size(double.infinity, 0),
+                ),
+                child: Text(
+                  'EDITAR PERFIL',
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge!
+                      .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+                ),
+              ),
+              const SizedBox(height: 30),
 
-            const Divider(),
-            const SizedBox(height: 10),
-            ProfileMenuWidget(
-                title: "Cerrar sesión", icon: Icons.logout, textColor: colors.error, endIcon: false, onPress: () {}),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Historial de entrenamiento', style: textThemes.headlineSmall),
+                    const SizedBox(height: 10),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        ListTile(
+                          title: Text('Ayer, 17:00'),
+                          subtitle: Text('CrossFit'),
+                          leading: Icon(Icons.sports_gymnastics),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {},
+                        ),
+                        ListTile(
+                          title: Text('Ayer, 17:00'),
+                          subtitle: Text('CrossFit'),
+                          leading: Icon(Icons.sports_gymnastics),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {},
+                        ),
+                        ListTile(
+                          title: Text('Ayer, 17:00'),
+                          subtitle: Text('CrossFit'),
+                          leading: Icon(Icons.sports_gymnastics),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Divider(),
+              const SizedBox(height: 10),
+
+              /// -- MENU
+              ListTile(
+                title: Text('Ajustes'),
+                leading: Icon(Icons.settings),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/ajustes');
+                },
+              ),
+              ListTile(
+                title: Text('Pagos'),
+                leading: Icon(Icons.monetization_on),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Información'),
+                leading: Icon(Icons.info),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {},
+              ),
+
+              const Divider(),
+              const SizedBox(height: 10),
+              ProfileMenuWidget(
+                  title: "Cerrar sesión", icon: Icons.logout, textColor: colors.error, endIcon: false, onPress: () {}),
+            ],
+          ),
         ),
       ),
     );

@@ -13,11 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
-  List<Widget> screens = <Widget>[
-    const ReservasScreen(),
-    const BenchmarksScreen(),
-    const ProveedoresScreen()
-  ];
+  List<Widget> screens = <Widget>[const ReservasScreen(), const BenchmarksScreen(), const ProveedoresScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
         //   onPressed: () => Scaffold.of(context).openDrawer(),
         // ),
         title: Image.asset(
-          'assets/images/puro_crossfit_logo.png',
-          height: 50,
+          'assets/images/puro_crosfit_logo_mod.png',
+          height: 30,
         ),
         centerTitle: true,
       ),
-      drawer: Container(
-          width: double.infinity, child: Drawer(child: ProfileScreen())),
+      drawer: Container(width: double.infinity, child: Drawer(child: ProfileScreen())),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

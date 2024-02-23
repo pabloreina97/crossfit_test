@@ -20,6 +20,10 @@ class _ReservasScreenState extends State<ReservasScreen> {
         child: Column(
           children: [
             TableCalendar(
+              calendarStyle: CalendarStyle(
+                  todayTextStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer, fontSize: 16.0),
+                  todayDecoration:
+                      BoxDecoration(color: Theme.of(context).colorScheme.primaryContainer, shape: BoxShape.circle)),
               locale: 'es_ES',
               availableCalendarFormats: const {CalendarFormat.week: 'Week'},
               startingDayOfWeek: StartingDayOfWeek.monday,
@@ -345,8 +349,7 @@ class _ClaseCardState extends State<_ClaseCard> {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.horizontal(
-                    left: Radius.circular(cardRadius)),
+                borderRadius: const BorderRadius.horizontal(left: Radius.circular(cardRadius)),
                 child: Hero(
                   tag: widget.id,
                   child: Image.asset(
