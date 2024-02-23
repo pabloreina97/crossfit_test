@@ -1,5 +1,6 @@
 import 'package:crossfit_test/ajustes_screen.dart';
 import 'package:crossfit_test/categoria_tienda_screen.dart';
+import 'package:crossfit_test/clase_detail_screen2.dart';
 import 'package:crossfit_test/proveedor_screen.dart';
 import 'package:crossfit_test/theme/app_theme.dart';
 import 'package:crossfit_test/benchmarks_screen.dart';
@@ -27,6 +28,7 @@ class MainApp extends StatelessWidget {
         home: const HomeScreen(),
         routes: {
           '/clase_detail': (context) => ClaseDetailScreen(),
+          '/clase_detail2': (context) => ClaseDetailScreen2(),
           '/edit_profile': (context) => UpdateProfileScreen(),
           '/benchmarks': (context) => BenchmarksScreen(),
           '/benchmark_detail': (context) => BenchmarkDetailScreen(),

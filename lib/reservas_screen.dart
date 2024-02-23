@@ -328,7 +328,7 @@ class _ClaseCardState extends State<_ClaseCard> {
 
     return GestureDetector(
       onTap: () => Navigator.of(context).pushNamed(
-        '/clase_detail',
+        '/clase_detail2',
         arguments: {
           'id': widget.id,
           'title': widget.title,
