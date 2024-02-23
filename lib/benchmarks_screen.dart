@@ -6,10 +6,32 @@ class BenchmarksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: Aquí habría que incluir una lista de ejercicios: sentadilla, peso muerto, etc. Dentro de cada ejercicio, un historial de los pesos levantados en ese ejercicio con número de repes, fecha, etc.
-      body: Center(
-        child: Text('BenchmarksScreen'),
+      body: ListView(
+        children: [
+          BenchmarkTile(title: 'Back squat'),
+          BenchmarkTile(title: 'Front squat'),
+          BenchmarkTile(title: 'Power clean'),
+          BenchmarkTile(title: 'Power snatch'),
+          BenchmarkTile(title: 'Split jerk'),
+          BenchmarkTile(title: 'Push jerk'),
+          BenchmarkTile(title: 'Thruster'),
+          BenchmarkTile(title: 'Deadlift'),
+        ],
       ),
+    );
+  }
+}
+
+class BenchmarkTile extends StatelessWidget {
+  final String title;
+
+  const BenchmarkTile({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title, style: Theme.of(context).textTheme.headlineSmall),
+      onTap: () => Navigator.of(context).pushNamed('/benchmark_detail', arguments: title),
     );
   }
 }

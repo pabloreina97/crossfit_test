@@ -7,6 +7,7 @@ import 'package:crossfit_test/clase_detail_screen.dart';
 import 'package:crossfit_test/home_screen.dart';
 import 'package:crossfit_test/profile_screen.dart';
 import 'package:crossfit_test/reservas_screen.dart';
+import 'package:crossfit_test/theme/benchmark_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -28,6 +29,7 @@ class MainApp extends StatelessWidget {
           '/clase_detail': (context) => ClaseDetailScreen(),
           '/edit_profile': (context) => UpdateProfileScreen(),
           '/benchmarks': (context) => BenchmarksScreen(),
+          '/benchmark_detail': (context) => BenchmarkDetailScreen(),
           '/reservas': (context) => ReservasScreen(),
           '/profile': (context) => ProfileScreen(),
           '/ajustes': (context) => AjustesScreen(),
