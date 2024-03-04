@@ -305,6 +305,8 @@ class _ClaseCard extends StatefulWidget {
     required this.hora,
     required this.inscritos,
     required this.plazas,
+    this.icon = Icons.fitness_center,
+    this.iconColor = Colors.teal,
     required this.id,
   });
 
@@ -312,6 +314,8 @@ class _ClaseCard extends StatefulWidget {
   final String hora;
   final int inscritos;
   final int plazas;
+  final IconData icon;
+  final Color iconColor;
   final int id;
 
   @override
@@ -348,16 +352,24 @@ class _ClaseCardState extends State<_ClaseCard> {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.horizontal(left: Radius.circular(cardRadius)),
-                child: Hero(
-                  tag: widget.id,
-                  child: Image.asset(
-                    'assets/images/${widget.title}.jpg',
-                    height: double.infinity,
-                    width: 80,
-                    fit: BoxFit.cover,
-                  ),
+              // ClipRRect(
+              //   borderRadius: const BorderRadius.horizontal(left: Radius.circular(cardRadius)),
+              //   child: Hero(
+              //     tag: widget.id,
+              //     child: Image.asset(
+              //       'assets/images/${widget.title}.jpg',
+              //       height: double.infinity,
+              //       width: 80,
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Icon(
+                  widget.icon,
+                  color: widget.iconColor,
+                  size: 36,
                 ),
               ),
               Expanded(
@@ -418,7 +430,7 @@ class Completo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: _createChildren(context));
+    return Tooltip(message: 'Nivel de ocupación', child: Row(children: _createChildren(context)));
   }
 
   List<Widget> _createChildren(BuildContext context) {
