@@ -11,289 +11,311 @@ class ReservasScreen extends StatefulWidget {
 class _ReservasScreenState extends State<ReservasScreen> {
   @override
   Widget build(BuildContext context) {
-    final CalendarFormat _calendarFormat = CalendarFormat.week;
-    DateTime _focusedDay = DateTime.now();
-    DateTime? _selectedDay;
+    const CalendarFormat calendarFormat = CalendarFormat.week;
+    DateTime focusedDay = DateTime.now();
+    DateTime? selectedDay;
     return Scaffold(
-      body: SingleChildScrollView(
-        // TODO: Hacer scrollable solo el ListView, y que permanezca el TableCalendar arriba
-        child: Column(
-          children: [
-            TableCalendar(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: TableCalendar(
               calendarStyle: CalendarStyle(
-                  todayTextStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer, fontSize: 16.0),
-                  todayDecoration:
-                      BoxDecoration(color: Theme.of(context).colorScheme.primaryContainer, shape: BoxShape.circle)),
+                todayTextStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer, fontSize: 16.0),
+                todayDecoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primaryContainer, shape: BoxShape.circle),
+                weekendTextStyle: TextStyle(color: Theme.of(context).colorScheme.secondaryContainer, fontSize: 16.0),
+              ),
+              headerStyle: HeaderStyle(
+                formatButtonTextStyle: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: 16.0),
+                titleCentered: true,
+                leftChevronIcon: Icon(Icons.chevron_left, color: Theme.of(context).colorScheme.onSurface),
+                rightChevronIcon: Icon(Icons.chevron_right, color: Theme.of(context).colorScheme.onSurface),
+              ),
+              daysOfWeekStyle: DaysOfWeekStyle(
+                weekdayStyle: TextStyle(color: Theme.of(context).colorScheme.secondaryContainer),
+                weekendStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
               locale: 'es_ES',
               availableCalendarFormats: const {CalendarFormat.week: 'Week'},
               startingDayOfWeek: StartingDayOfWeek.monday,
               firstDay: DateTime.utc(2023, 7, 20),
               lastDay: DateTime.utc(2025, 7, 20),
-              focusedDay: _focusedDay,
-              calendarFormat: _calendarFormat,
+              focusedDay: focusedDay,
+              calendarFormat: calendarFormat,
               selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
+                return isSameDay(selectedDay, day);
               },
               onDaySelected: (selectedDay, focusedDay) {
-                if (!isSameDay(_selectedDay, selectedDay)) {
+                if (!isSameDay(selectedDay, selectedDay)) {
                   setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
+                    selectedDay = selectedDay;
+                    focusedDay = focusedDay;
                   });
                 }
               },
               onPageChanged: (focusedDay) {
-                _focusedDay = focusedDay;
+                focusedDay = focusedDay;
               },
             ),
-            ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                // MAÑANA
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '7:00 - 8:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 1,
+          ),
+          Expanded(
+            child: Scrollbar(
+              interactive: true,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: const [
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '7:00 - 8:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 1,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '7:00 - 8:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 2,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '7:00 - 8:00',
+                          inscritos: 0,
+                          plazas: 4,
+                          id: 3,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '7:00 - 8:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 4,
+                        ),
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '8:00 - 9:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 5,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '8:00 - 9:00',
+                          inscritos: 2,
+                          plazas: 4,
+                          id: 6,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '8:30 - 10:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 7,
+                        ),
+                        _ClaseTile(
+                          title: 'HYROX',
+                          hora: '9:00 - 10:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 8,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '9:00 - 10:00',
+                          inscritos: 1,
+                          plazas: 4,
+                          id: 9,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '9:00 - 10:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 10,
+                        ),
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '10:00 - 11:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 11,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '10:00 - 11:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 12,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '10:00 - 11:00',
+                          inscritos: 3,
+                          plazas: 4,
+                          id: 13,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '11:00 - 12:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 14,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '11:30 - 13:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 15,
+                        ),
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '12:00 - 13:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 16,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '12:00 - 13:00',
+                          inscritos: 1,
+                          plazas: 4,
+                          id: 17,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '13:00 - 14:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 18,
+                        ),
+                        _ClaseTile(
+                          title: 'HYROX',
+                          hora: '13:00 - 14:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 19,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '13:00 - 14:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 20,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '13:00 - 14:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 21,
+                        ),
+                        _ClaseTile(
+                          title: 'INICIACIÓN',
+                          hora: '14:00 - 15:00',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 22,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '14:00 - 15:00',
+                          inscritos: 2,
+                          plazas: 4,
+                          id: 23,
+                        ),
+                        // TARDE
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '17:30 - 19:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 24,
+                        ),
+                        _ClaseTile(
+                          title: 'HYROX',
+                          hora: '17:30 - 18:30',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 25,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '17:30 - 18:30',
+                          inscritos: 0,
+                          plazas: 4,
+                          id: 26,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '17:30 - 18:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 27,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '18:00 - 19:00',
+                          inscritos: 3,
+                          plazas: 4,
+                          id: 28,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '18:30 - 20:00',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 29,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN COLECTIVAS',
+                          hora: '19:00 - 20:00',
+                          inscritos: 2,
+                          plazas: 4,
+                          id: 30,
+                        ),
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '19:30 - 20:30',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 31,
+                        ),
+                        _ClaseTile(
+                          title: 'TRAINING CULTURE',
+                          hora: '19:30 - 20:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 32,
+                        ),
+                        _ClaseTile(
+                          title: 'OPEN BOX',
+                          hora: '20:00 - 21:30',
+                          inscritos: 5,
+                          plazas: 6,
+                          id: 33,
+                        ),
+                        _ClaseTile(
+                          title: 'CROSSFIT',
+                          hora: '20:30 - 21:30',
+                          inscritos: 5,
+                          plazas: 12,
+                          id: 34,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '7:00 - 8:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 2,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '7:00 - 8:00',
-                  inscritos: 0,
-                  plazas: 4,
-                  id: 3,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '7:00 - 8:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 4,
-                ),
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '8:00 - 9:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 5,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '8:00 - 9:00',
-                  inscritos: 2,
-                  plazas: 4,
-                  id: 6,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '8:30 - 10:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 7,
-                ),
-                _ClaseCard(
-                  title: 'HYROX',
-                  hora: '9:00 - 10:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 8,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '9:00 - 10:00',
-                  inscritos: 1,
-                  plazas: 4,
-                  id: 9,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '9:00 - 10:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 10,
-                ),
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '10:00 - 11:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 11,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '10:00 - 11:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 12,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '10:00 - 11:00',
-                  inscritos: 3,
-                  plazas: 4,
-                  id: 13,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '11:00 - 12:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 14,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '11:30 - 13:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 15,
-                ),
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '12:00 - 13:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 16,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '12:00 - 13:00',
-                  inscritos: 1,
-                  plazas: 4,
-                  id: 17,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '13:00 - 14:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 18,
-                ),
-                _ClaseCard(
-                  title: 'HYROX',
-                  hora: '13:00 - 14:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 19,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '13:00 - 14:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 20,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '13:00 - 14:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 21,
-                ),
-                _ClaseCard(
-                  title: 'INICIACIÓN',
-                  hora: '14:00 - 15:00',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 22,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '14:00 - 15:00',
-                  inscritos: 2,
-                  plazas: 4,
-                  id: 23,
-                ),
-                // TARDE
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '17:30 - 19:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 24,
-                ),
-                _ClaseCard(
-                  title: 'HYROX',
-                  hora: '17:30 - 18:30',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 25,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '17:30 - 18:30',
-                  inscritos: 0,
-                  plazas: 4,
-                  id: 26,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '17:30 - 18:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 27,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '18:00 - 19:00',
-                  inscritos: 3,
-                  plazas: 4,
-                  id: 28,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '18:30 - 20:00',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 29,
-                ),
-                _ClaseCard(
-                  title: 'OPEN COLECTIVAS',
-                  hora: '19:00 - 20:00',
-                  inscritos: 2,
-                  plazas: 4,
-                  id: 30,
-                ),
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '19:30 - 20:30',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 31,
-                ),
-                _ClaseCard(
-                  title: 'TRAINING CULTURE',
-                  hora: '19:30 - 20:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 32,
-                ),
-                _ClaseCard(
-                  title: 'OPEN BOX',
-                  hora: '20:00 - 21:30',
-                  inscritos: 5,
-                  plazas: 6,
-                  id: 33,
-                ),
-                _ClaseCard(
-                  title: 'CROSSFIT',
-                  hora: '20:30 - 21:30',
-                  inscritos: 5,
-                  plazas: 12,
-                  id: 34,
-                ),
-              ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -305,8 +327,6 @@ class _ClaseCard extends StatefulWidget {
     required this.hora,
     required this.inscritos,
     required this.plazas,
-    this.icon = Icons.fitness_center,
-    this.iconColor = Colors.teal,
     required this.id,
   });
 
@@ -314,8 +334,6 @@ class _ClaseCard extends StatefulWidget {
   final String hora;
   final int inscritos;
   final int plazas;
-  final IconData icon;
-  final Color iconColor;
   final int id;
 
   @override
@@ -364,14 +382,7 @@ class _ClaseCardState extends State<_ClaseCard> {
               //     ),
               //   ),
               // ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Icon(
-                  widget.icon,
-                  color: widget.iconColor,
-                  size: 36,
-                ),
-              ),
+
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -418,6 +429,82 @@ class _ClaseCardState extends State<_ClaseCard> {
   }
 }
 
+class _ClaseTile extends StatefulWidget {
+  const _ClaseTile({
+    required this.title,
+    required this.hora,
+    required this.inscritos,
+    required this.plazas,
+    required this.id,
+  });
+
+  final String title;
+  final String hora;
+  final int inscritos;
+  final int plazas;
+  final int id;
+
+  @override
+  State<_ClaseTile> createState() => _ClaseTileState();
+}
+
+class _ClaseTileState extends State<_ClaseTile> {
+  bool inscrito = false;
+  @override
+  Widget build(BuildContext context) {
+    final ColorScheme colors = Theme.of(context).colorScheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    // const double cardRadius = 12;
+
+    return ListTile(
+      contentPadding: const EdgeInsets.all(12),
+      onTap: () => Navigator.of(context).pushNamed(
+        '/clase_detail2',
+        arguments: {
+          'id': widget.id,
+          'title': widget.title,
+        },
+      ),
+      leading: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        // child: Hero(
+        //   tag: widget.id,
+        //   child: Image.asset(
+        //     'assets/images/${widget.title}.jpg',
+        //     fit: BoxFit.cover,
+        //     width: 96,
+        //   ),
+        // ),
+        child: Image.asset(
+          'assets/images/${widget.title}.jpg',
+          fit: BoxFit.cover,
+          width: 96,
+        ),
+      ),
+      // leading: Icon(
+      //   widget.icon,
+      //   color: widget.iconColor,
+      //   size: 36,
+      // ),
+      title: Text(widget.title, style: textTheme.headlineMedium),
+      subtitle: Text(widget.hora, style: textTheme.labelMedium),
+      trailing: inscrito
+          ? Icon(
+              Icons.check_circle,
+              color: colors.primary,
+            )
+          : Container(
+              width: 48,
+              alignment: Alignment.centerRight,
+              child: Completo(
+                inscritos: widget.inscritos,
+                plazas: widget.plazas,
+              ),
+            ),
+    );
+  }
+}
+
 class Completo extends StatelessWidget {
   final int inscritos;
   final int plazas;
@@ -430,7 +517,9 @@ class Completo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(message: 'Nivel de ocupación', child: Row(children: _createChildren(context)));
+    return Tooltip(
+        message: 'Nivel de ocupación',
+        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: _createChildren(context)));
   }
 
   List<Widget> _createChildren(BuildContext context) {

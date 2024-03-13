@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ClaseDetailScreen extends StatefulWidget {
   const ClaseDetailScreen({super.key});
@@ -21,8 +20,7 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
 
   void _updateExpansionPercentage() {
     setState(() {
-      _expansionPercentage = 1.0 -
-          (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
+      _expansionPercentage = 1.0 - (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
 
       _changeAppBarTitleColor(_expansionPercentage);
     });
@@ -91,10 +89,7 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen> {
           ),
           child: Text(
             'RESERVAR',
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(color: Theme.of(context).colorScheme.onSecondary),
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
           ),
         ),
       ),
@@ -210,10 +205,7 @@ class Ejercicio extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: textTheme.bodyLarge),
+                Text(title, overflow: TextOverflow.ellipsis, maxLines: 2, style: textTheme.bodyLarge),
                 Text(
                   valor,
                   style: textTheme.labelMedium,

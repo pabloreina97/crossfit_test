@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProveedorScreen extends StatelessWidget {
   const ProveedorScreen({super.key});
@@ -51,8 +50,7 @@ class CategoriaTienda extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () =>
-                    Navigator.pushNamed(context, '/categoria_tienda'),
+                onPressed: () => Navigator.pushNamed(context, '/categoria_tienda'),
                 child: const Text(
                   "Mostrar todo",
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProveedoresScreen extends StatelessWidget {
-  const ProveedoresScreen({Key? key}) : super(key: key);
+  const ProveedoresScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,7 @@ class Proveedor extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
+              color: Theme.of(context).colorScheme.surfaceVariant,
               border: Border.all(
                 color: Colors.black12,
                 width: 1,

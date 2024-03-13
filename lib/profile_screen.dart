@@ -1,129 +1,132 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     var colors = Theme.of(context).colorScheme;
     var textThemes = Theme.of(context).textTheme;
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        leading: BackButton(),
-        title: Text('PERFIL'),
+        leading: const BackButton(),
+        title: const Text('PERFIL'),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              /// -- IMAGE
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: const Image(
-                        fit: BoxFit.cover,
-                        image: NetworkImage('https://www.laguiadelvaron.com/wp-content/uploads/2021/03/schw14.jpg'))),
-              ),
-              const SizedBox(height: 10),
-              Text('Pablo Reina', style: textThemes.displaySmall),
-              Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
-              const SizedBox(height: 20),
+        child: Column(
+          children: [
+            /// -- IMAGE
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: const Image(fit: BoxFit.cover, image: AssetImage('assets/images/avatar/avatar (6).jpg'))),
+            ),
+            const SizedBox(height: 10),
+            Text('Pablo Reina', style: textThemes.displaySmall),
+            Text('pabloreinagalvez@gmail.com', style: textThemes.bodyLarge),
+            const SizedBox(height: 20),
 
-              /// -- BUTTON
-              ElevatedButton(
-                onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                  padding: const EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  minimumSize: const Size(double.infinity, 0),
-                ),
-                child: Text(
-                  'EDITAR PERFIL',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+            /// -- BUTTON
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed('/edit_profile'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                padding: const EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              const SizedBox(height: 30),
+              child: const Text('EDITAR PERFIL'),
+            ),
+            const SizedBox(height: 30),
 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text('Historial de entrenamiento', style: textThemes.headlineSmall),
+                ),
+                const SizedBox(height: 10),
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Text('Historial de entrenamiento', style: textThemes.headlineSmall),
-                    const SizedBox(height: 10),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        ListTile(
-                          title: Text('Ayer, 17:00'),
-                          subtitle: Text('CrossFit'),
-                          leading: Icon(Icons.sports_gymnastics),
-                          trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () {},
-                        ),
-                        ListTile(
-                          title: Text('Ayer, 17:00'),
-                          subtitle: Text('CrossFit'),
-                          leading: Icon(Icons.sports_gymnastics),
-                          trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () {},
-                        ),
-                        ListTile(
-                          title: Text('Ayer, 17:00'),
-                          subtitle: Text('CrossFit'),
-                          leading: Icon(Icons.sports_gymnastics),
-                          trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () {},
-                        ),
-                      ],
+                    ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      title: const Text('Ayer, 17:00'),
+                      subtitle: const Text('CrossFit'),
+                      leading: const Icon(Icons.sports_gymnastics),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      title: const Text('Ayer, 17:00'),
+                      subtitle: const Text('CrossFit'),
+                      leading: const Icon(Icons.sports_gymnastics),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      title: const Text('Ayer, 17:00'),
+                      subtitle: const Text('CrossFit'),
+                      leading: const Icon(Icons.sports_gymnastics),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {},
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 30),
-              const Divider(),
-              const SizedBox(height: 10),
+              ],
+            ),
+            const SizedBox(height: 30),
+            const Divider(),
+            // const SizedBox(height: 10),
 
-              /// -- MENU
-              ListTile(
-                title: Text('Ajustes'),
-                leading: Icon(Icons.settings),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  Navigator.of(context).pushNamed('/ajustes');
-                },
-              ),
-              ListTile(
-                title: Text('Pagos'),
-                leading: Icon(Icons.monetization_on),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Información'),
-                leading: Icon(Icons.info),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {},
-              ),
-
-              const Divider(),
-              const SizedBox(height: 10),
-              ProfileMenuWidget(
-                  title: "Cerrar sesión", icon: Icons.logout, textColor: colors.error, endIcon: false, onPress: () {}),
-            ],
-          ),
+            /// -- MENU
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+              title: const Text('Ajustes'),
+              leading: const Icon(Icons.settings),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () {
+                Navigator.of(context).pushNamed('/ajustes');
+              },
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+              title: const Text('Pagos'),
+              leading: const Icon(Icons.monetization_on),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+              title: const Text('Información'),
+              leading: const Icon(Icons.info),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
+            const Divider(),
+            // const SizedBox(height: 10),
+            ProfileMenuWidget(
+              title: "Cerrar sesión",
+              icon: Icons.logout,
+              textColor: colors.error,
+              endIcon: false,
+              onPress: () {},
+            ),
+            const SizedBox(height: 10)
+          ],
         ),
       ),
     );
@@ -132,13 +135,13 @@ class ProfileScreen extends StatelessWidget {
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.onPress,
     this.endIcon = true,
     this.textColor,
-  }) : super(key: key);
+  });
 
   final String title;
   final IconData icon;
@@ -148,29 +151,20 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    var colors = Theme.of(context).colorScheme;
-    var iconColor = isDark ? colors.primary : colors.onPrimary;
-
     return ListTile(
-      onTap: onPress,
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: iconColor.withOpacity(0.1),
-        ),
-        child: Icon(icon, color: iconColor),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+      title: Text(
+        title,
+        style: TextStyle(color: textColor),
       ),
-      title: Text(title, style: Theme.of(context).textTheme.bodyLarge?.apply(color: textColor)),
-      trailing: endIcon ? const Icon(Icons.keyboard_arrow_right, size: 18.0, color: Colors.grey) : null,
+      leading: Icon(icon, color: textColor),
+      onTap: onPress,
     );
   }
 }
 
 class UpdateProfileScreen extends StatelessWidget {
-  const UpdateProfileScreen({Key? key}) : super(key: key);
+  const UpdateProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +172,7 @@ class UpdateProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('EDITAR PERFIL'),
+        title: const Text('EDITAR PERFIL'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -243,8 +237,16 @@ class UpdateProfileScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
-                        style: ElevatedButton.styleFrom(side: BorderSide.none, shape: const StadiumBorder()),
-                        child: const Text('Editar perfil', style: TextStyle(color: Colors.black)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                          padding: const EdgeInsets.all(10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          minimumSize: const Size(double.infinity, 0),
+                        ),
+                        child: const Text('GUARDAR CAMBIOS'),
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -268,7 +270,9 @@ class UpdateProfileScreen extends StatelessWidget {
                               backgroundColor: colors.errorContainer,
                               elevation: 0,
                               foregroundColor: colors.onErrorContainer,
-                              shape: const StadiumBorder(),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               side: BorderSide.none),
                           child: const Text('Borrar'),
                         ),

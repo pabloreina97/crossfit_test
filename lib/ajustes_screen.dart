@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AjustesScreen extends StatelessWidget {
-  const AjustesScreen({Key? key}) : super(key: key);
+  const AjustesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

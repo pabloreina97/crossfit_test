@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ClaseDetailScreen2 extends StatefulWidget {
   const ClaseDetailScreen2({super.key});
@@ -22,14 +21,19 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
   void _updateExpansionPercentage() {
     setState(() {
       _expansionPercentage = 1.0 - (_scrollController.offset / (180 - kToolbarHeight)).clamp(0.0, 1.0);
-
-      _changeAppBarTitleColor(_expansionPercentage);
+      _changeAppBarTitleColor(context, _expansionPercentage);
     });
   }
 
-  void _changeAppBarTitleColor(expansionPercentage) {
-    Color color1 = Colors.black;
+  void _changeAppBarTitleColor(BuildContext context, double expansionPercentage) {
+    Color color1 = Theme.of(context).colorScheme.onSurface;
     Color color2 = Colors.white;
+
+    if (expansionPercentage > 0.4) {
+      expansionPercentage = 1;
+    } else {
+      expansionPercentage = (expansionPercentage) / 0.4;
+    }
 
     setState(() {
       appBarTitleColor = Color.lerp(color1, color2, expansionPercentage)!;
@@ -49,15 +53,20 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
             foregroundColor: appBarTitleColor,
             title: Text(args['title'] as String),
             centerTitle: true,
-            backgroundColor: Colors.white,
             scrolledUnderElevation: 0,
             elevation: 0,
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
                 tag: args['id'],
-                child: Image.asset(
-                  'assets/images/${args['title']}.jpg',
-                  fit: BoxFit.cover,
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.1),
+                    BlendMode.luminosity,
+                  ),
+                  child: Image.asset(
+                    'assets/images/${args['title']}.jpg',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -72,31 +81,31 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
-                        AvatarScrollItem(),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (1).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (2).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (3).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (4).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (5).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (6).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (7).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (8).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (9).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (10).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (11).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (12).jpg"),
+                        AvatarScrollItem(pathImage: "assets/images/avatar/avatar (13).jpg"),
                       ],
                     ),
-                    scrollDirection: Axis.horizontal,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Divider(),
                 ),
                 Padding(
@@ -107,39 +116,39 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
                   ),
                 ),
                 const Bloque(letra: 'A', title: 'Back squat', children: [
-                  const Ejercicio(
+                  Ejercicio(
                     title: 'Back squat',
                     type: 'repeticiones',
                     valor: '5x55% - 5x65% - 4x75% - 2x3x85% - 2x1x95%',
                   )
                 ]),
                 const Bloque(letra: 'B', title: 'Hang squat snatch', children: [
-                  const Ejercicio(
+                  Ejercicio(
                     title: 'Hang squat snatch',
                     type: 'repeticiones',
                     valor: '2x5x85%',
                   )
                 ]),
                 const Bloque(letra: 'C', title: 'Wod. 5 rounds for quality', children: [
-                  const Ejercicio(
+                  Ejercicio(
                     title: 'DB Snatch',
                     type: 'repeticiones',
                     valor: '16 reps',
                   ),
-                  const SizedBox(height: 10),
-                  const Ejercicio(
+                  SizedBox(height: 10),
+                  Ejercicio(
                     title: 'Toes to bar',
                     type: 'repeticiones',
                     valor: '14 reps',
                   ),
-                  const SizedBox(height: 10),
-                  const Ejercicio(
+                  SizedBox(height: 10),
+                  Ejercicio(
                     title: 'Hang squat snatch',
                     type: 'repeticiones',
                     valor: '5/4/3/2/1 - 50/35 kg',
                   ),
-                  const SizedBox(height: 10),
-                  const Ejercicio(
+                  SizedBox(height: 10),
+                  Ejercicio(
                     title: 'Row',
                     type: 'calorias',
                     valor: '10 cal',
@@ -157,17 +166,15 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             padding: const EdgeInsets.all(10),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             minimumSize: const Size(double.infinity, 0),
           ),
-          child: Text(
-            'RESERVAR',
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
-          ),
+          child: const Text('RESERVAR'),
         ),
       ),
     );
@@ -177,15 +184,19 @@ class _ClaseDetailScreenState extends State<ClaseDetailScreen2> {
 class AvatarScrollItem extends StatelessWidget {
   const AvatarScrollItem({
     super.key,
+    required this.pathImage,
   });
+
+  final String pathImage;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: CircleAvatar(
-        foregroundImage: NetworkImage(
-            'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='),
+        foregroundImage: AssetImage(
+          pathImage,
+        ),
       ),
     );
   }

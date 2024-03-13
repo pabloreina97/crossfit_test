@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CategoriaTiendaScreen extends StatelessWidget {
-  const CategoriaTiendaScreen({Key? key}) : super(key: key);
+  const CategoriaTiendaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

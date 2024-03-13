@@ -6,8 +6,9 @@ class BenchmarksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
       body: ListView(
-        children: [
+        children: const [
           BenchmarkTile(title: 'Back squat'),
           BenchmarkTile(title: 'Front squat'),
           BenchmarkTile(title: 'Power clean'),
